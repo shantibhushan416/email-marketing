@@ -1,16 +1,25 @@
-import { Box } from "@mui/material";
-import "./App.css";
+
 import Header from "./component/header/Header";
 import Home from "./component/home/Home";
+import CreateCampaigns from "./campaigns/CreateCampaigns";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Box } from "@mui/material";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Box style={{marginTop: 200}}>
-        <Home/>
-      </Box>
+      <BrowserRouter>
+          <Header />
+          <Box style={{marginTop: 200}}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/create" element={<CreateCampaigns/>}/>    
+            </Routes>
+          </Box>
+      </BrowserRouter>
     </div>
   );
 }
