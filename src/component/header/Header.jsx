@@ -4,9 +4,8 @@ import CustomButtons from "./CustomButtons";
 import Search from "./Search";
 
 const StyledHeader = styled(AppBar)` 
-    background: black;
-    box-shadow: none;
-    
+    background: white;
+    border-bottom: 1px solid;
 `;
 const Component = styled(Box)`
     display: flex;
@@ -16,27 +15,32 @@ const Component = styled(Box)`
 `;
 
 const NavList = styled(Typography)`
-    margin-right: 40px`;
-
-const CustomButtonsWrapper = styled(Box)`
-    margin-left:  100px; 
+    margin-right: 40px;
+    color: black;
+    font-weight: 400
 `;
+
+
 
  const Header = () => {
     return(
-        <StyledHeader>       
-            <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
-                <Component>
-                    <NavList>About Us</NavList>
-                    <NavList>Pricing</NavList>
-                    <NavList>Request demo</NavList>
-                </Component>
-                <Search/>
-                <CustomButtonsWrapper>
-                    <CustomButtons/>
-                </CustomButtonsWrapper>            
-            </Toolbar>
-        </StyledHeader>
+        <>
+            <StyledHeader>       
+                <Toolbar style={{ justifyContent: "space-between"}}>
+                    <Component>
+                        <NavList>About Us</NavList>
+                        <NavList>Pricing</NavList>
+                        <NavList>Request demo</NavList>
+                    </Component>
+                    <Search/>
+                    <Box>
+                        <CustomButtons/>
+                    </Box>            
+               </Toolbar>
+            </StyledHeader>
+        </>
+        
+        
     )
  }
 
