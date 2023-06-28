@@ -4,6 +4,7 @@ import { Box,Button,styled} from "@mui/material";
 import LoginDialog from "../login/LoginDialog";
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
 
 const Wrapper = styled(Box)`
     display: flex;
@@ -38,7 +39,9 @@ const CustomButtons = () =>{
     return(
         <Wrapper>
             <LoginButton variant="contained" onClick={handleOpen}>Login</LoginButton>
+            <Link to="/create">
             <LoginButton variant="contained">SignUp</LoginButton>
+            </Link>
             <LoginDialog open={open} setOpen={setOpen}/>
         </Wrapper>    
     )
