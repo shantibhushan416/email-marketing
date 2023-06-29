@@ -55,10 +55,6 @@ const CreateAccount = styled(Typography)`
     cursor: pointer;
 `;
 
-const CheckBox = styled(Checkbox)`
-     margin: 9px 9px 9px 0;
-`;
-
 const accountInitialValues = {
     login: {
         view: "login",

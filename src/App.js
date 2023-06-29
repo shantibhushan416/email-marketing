@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
           <Header />
-          <Box style={{marginTop: 200}}>
+          <Box>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/create" element={<CreateCampaigns/>}/>    

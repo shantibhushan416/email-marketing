@@ -34,8 +34,6 @@ const CustomButtons = () =>{
         setOpen(true)
     }
 
-
-
     return(
         <Wrapper>
             <LoginButton variant="contained" onClick={handleOpen}>Login</LoginButton>

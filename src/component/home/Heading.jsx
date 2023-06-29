@@ -3,8 +3,7 @@ import { Box, Typography,styled } from "@mui/material";
 
 
 const Wrapper = styled(Box) `
-
-  margin: 0 350px;
+  margin: 100px 350px 0 350px;
   text-align: center;
 
 `;
