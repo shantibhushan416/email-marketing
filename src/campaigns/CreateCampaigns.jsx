@@ -29,8 +29,7 @@ export default function CreateCampaigns() {
 
   return (
     <>
-    <Divider/>
-    <Grid container style={{height: "100vh",marginTop: 100}}>
+    <Grid container style={{height: "90vh",marginTop: 64}}>
         <Grid item lg={2} style={{borderRight: '1px solid rgba(0, 0, 0, 0.12)',paddingTop: 20}}>
           <List
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
