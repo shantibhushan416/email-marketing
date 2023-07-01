@@ -1,12 +1,14 @@
 
 import Header from "./component/header/Header";
 import Home from "./component/home/Home";
+import Campaigns from "./campaigns/Campaigns";
 import CreateCampaigns from "./campaigns/CreateCampaigns";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Box } from "@mui/material";
 import "./App.css";
+
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
           <Box>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/create" element={<CreateCampaigns/>}/>    
+              <Route path="/campaigns" element={<Campaigns/>}/> 
+              <Route path="/campaigns/createcampaigns" element={<CreateCampaigns/>}/>    
             </Routes>
           </Box>
       </BrowserRouter>
