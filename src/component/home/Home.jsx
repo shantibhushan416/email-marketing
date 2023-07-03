@@ -4,9 +4,9 @@ import Heading from "./Heading"
 
 const Home = () => {
     return(
-        <Box style={{ alignItems: "center"}}>
+        < >
             <Heading/>
-        </Box>
+        </>
     )
 }
 

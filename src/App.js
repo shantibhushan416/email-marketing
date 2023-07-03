@@ -8,14 +8,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Box } from "@mui/material";
 import "./App.css";
+import { Widgets } from "@mui/icons-material";
 
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{background: "#fe902d", height: "100vh" ,width:"100%"}}>
       <BrowserRouter>
           <Header />
-          <Box>
+          <Box >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/campaigns" element={<Campaigns/>}/> 

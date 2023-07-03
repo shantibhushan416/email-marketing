@@ -14,9 +14,6 @@ display: flex;
 `;
 
 const InputContainer = styled(InputBase)`
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
     width: 100%;
     padding-left: 20px;
     border-radius: 2px;
@@ -25,9 +22,6 @@ const InputContainer = styled(InputBase)`
 `;
 
 const SearchIconWrapper = styled(Box)`
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
     margin-left: auto;
     padding: 5px;
     display: flex;
@@ -41,7 +35,7 @@ const Search = () => {
         <SearchContainer>
             <InputContainer placeholder="Search Email"/>
             <SearchIconWrapper>
-                <MicIcon/>
+                <MicIcon style={{color:"#fe902d"}}/>
             </SearchIconWrapper>
         </SearchContainer>
     )

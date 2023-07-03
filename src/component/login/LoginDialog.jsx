@@ -1,8 +1,8 @@
 import {useState} from "react";
 
-import styled from "@emotion/styled";
-import { Box, Button, Dialog, TextField, Typography,Checkbox } from "@mui/material";
+import { authenticateSignup,authenticateLogIn } from "../../service/Api";
 
+import { Box, Button, Dialog, TextField, Typography,Checkbox,styled } from "@mui/material";
 import {Google}from '@mui/icons-material';
 
 
@@ -65,11 +65,26 @@ const accountInitialValues = {
     }
 } 
 
+const signUpInitialValues = {
+    firstName: '',
+    lastName: '',
+    password: '',
+    businessName: "",
+    phone: ""
+}
+
+const loginIntialValues={
+    userName:"",
+    password:""
+}
+
 
 const LoginDialog = ({open, setOpen}) => {
 
 
-    const [account, toggleAccount] = useState(accountInitialValues.login)
+    const [account, toggleAccount] = useState(accountInitialValues.login);
+    const [signUp, setSignUp] = useState(signUpInitialValues);
+    const [login, setLogin] = useState(loginIntialValues);
 
     const handleClose = () => {
         setOpen(false)
@@ -79,6 +94,34 @@ const LoginDialog = ({open, setOpen}) => {
     const signupAccount = () => {
         toggleAccount(accountInitialValues.signup)
     }
+
+    const handleChange = (e) => {
+        setSignUp({...signUp,[e.target.name]: e.target.value})
+        console.log(signUp)
+    }
+
+    const signUpUser = async () => {
+        let response = await authenticateSignup(signUp);
+        if(!response) return;
+        handleClose();
+    }
+
+    const onValueChange = (e) => {
+        setLogin({...login, [e.target.name]: e.target.value})
+     }
+
+    const loginUser = async () => {
+        let response =  await authenticateLogIn(login);
+        if(response.status === 200){
+            handleClose();
+        }
+        else{
+            setError(true)
+        }
+        
+        
+     }
+    
     
     return(
         <Dialog open={open} onClose={handleClose} >
@@ -86,13 +129,13 @@ const LoginDialog = ({open, setOpen}) => {
             { account.view === "login" ?
                 <Wrapper>
                 <Typography variant="h4" style={{fontWeight:"bold"}}>Login</Typography>
-                    <TextField variant="standard" label="Enter Username"/>
-                    <TextField variant="standard" label="Enter Username"/>
+                    <TextField variant="standard" label="Enter Username" name="firstName" onChange={(e) => onValueChange(e)}/>
+                    <TextField variant="standard" label="Enter Password" name="firstName" onChange={(e) => onValueChange(e)}/>
                     <Box style={{display:"flex", flexDirection: "row" ,marginLeft: "0" }}>                   
                         <Checkbox />
                         <Text>Keep me logged In</Text>
                     </Box>
-                    <LoginButton>Login</LoginButton>
+                    <LoginButton onClick={() => loginUser()}>Login</LoginButton>
                     <LoginButton style={{marginTop: "20px"}}>
                         <Google/> Signup with Google
                     </LoginButton>
@@ -102,11 +145,12 @@ const LoginDialog = ({open, setOpen}) => {
                 </Wrapper>
                 :
                 <Wrapper>
-                   <Typography variant="h4" style={{fontWeight:"bold"}}>SignUp</Typography>
-                    <TextField variant="outlined"  label="First Name"/>
-                    <TextField variant="outlined" label="LastName"/>
-                    <TextField variant="outlined" label="Business name"/>
-                    <TextField variant="outlined" label="Phone number"/>
+                   <Typography variant="h4" style={{fontWeight:"bold"}} onClick={() => signUpUser()}>SignUp</Typography>
+                    <TextField variant="outlined"  label="First Name" name="firstName" onChange={(e) => handleChange(e)} />
+                    <TextField variant="outlined" label="LastName" name="lastName" onChange={(e) => handleChange(e)} />
+                    <TextField variant="outlined" label="password" name="password" onChange={(e) => handleChange(e)} />
+                    <TextField variant="outlined" label="Business name" name="businessName" onChange={(e) => handleChange(e)} />
+                    <TextField variant="outlined" label="Phone number" name="phone" onChange={(e) => handleChange(e)} />
                     
                     <LoginButton style={{marginTop: "50px"}}>
                         SignUp

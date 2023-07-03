@@ -4,7 +4,8 @@ import CustomButtons from "./CustomButtons";
 import Search from "./Search";
 
 const StyledHeader = styled(AppBar)` 
-    background: white;
+    background: black;
+    box-shadow: none;
     border-bottom: 1px solid;
 `;
 const Component = styled(Box)`
@@ -16,7 +17,7 @@ const Component = styled(Box)`
 
 const NavList = styled(Typography)`
     margin-right: 40px;
-    color: black;
+    color: #fe902d;
     font-weight: 400
 `;
 

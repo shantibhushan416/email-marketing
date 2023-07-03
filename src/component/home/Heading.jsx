@@ -3,7 +3,7 @@ import { Box, Typography,styled } from "@mui/material";
 
 
 const Wrapper = styled(Box) `
-  margin: 250px 350px 0 350px;
+  padding-top:  350px;
   text-align: center;
 
 `;
@@ -16,7 +16,7 @@ const Heading = () => {
     return(
         <Wrapper >
             <Banner variant="h3">Turns Email into Revenue</Banner>
-            <Typography variant="h5" style={{textAlign: "center!important"}} >Win new cutomers with #1 emial marketing and automations brand* that recommends ways to get more opens, ckicks and sales</Typography>
+            <Typography variant="h5" style={{textAlign: "center"}} >Win new cutomers with #1 emial marketing and automations brand* that recommends ways to get more opens, ckicks and sales</Typography>
         </Wrapper>
     )
 }
