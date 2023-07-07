@@ -17,8 +17,10 @@ const Component = styled(Box)`
 
 const NavList = styled(Typography)`
     margin-right: 40px;
-    color: #fe902d;
-    font-weight: 400
+    color: #ffffff;
+    text-transform: none;
+    font-size: 16px;  
+  
 `;
 
 
@@ -33,7 +35,7 @@ const NavList = styled(Typography)`
                         <NavList>Pricing</NavList>
                         <NavList>Request demo</NavList>
                     </Component>
-                    <Search/>
+                    {/* <Search/> */}
                     <Box>
                         <CustomButtons/>
                     </Box>            

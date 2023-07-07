@@ -13,7 +13,7 @@ import { Widgets } from "@mui/icons-material";
 
 function App() {
   return (
-    <div className="App" style={{background: "#fe902d", height: "100vh" ,width:"100%"}}>
+    <div className="App" style={{background: "rgb(205, 209, 228)", height: "100vh" ,width:"100%"}}>
       <BrowserRouter>
           <Header />
           <Box >

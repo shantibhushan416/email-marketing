@@ -9,10 +9,6 @@ import { Link } from "react-router-dom";
 const Wrapper = styled(Box)`
     display: flex;
     margin: 0 3% 0 auto;
-    & >  button {
-        margin-right: 10px;
-        font-size: 16px  
-    }
 `;
     
 const LoginButton = styled(Button)`
@@ -22,8 +18,7 @@ const LoginButton = styled(Button)`
     padding: 5px 10x;
     border-radius: 2px;
     box-shadow: none;
-    font-weight: 400;
-    height: 32px
+    font-size: 16px  
 `;
 
 const CustomButtons = () =>{
