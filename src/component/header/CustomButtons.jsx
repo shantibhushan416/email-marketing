@@ -2,9 +2,12 @@
 import { Box,Button,styled} from "@mui/material";
 
 import LoginDialog from "../login/LoginDialog";
-import { useState } from "react";
+import SignUpDialog from "../login/SignupDialog";
 
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+
+
 
 const Wrapper = styled(Box)`
     display: flex;
@@ -12,7 +15,7 @@ const Wrapper = styled(Box)`
 `;
     
 const LoginButton = styled(Button)`
-    color: #fe902d;
+    color: #ffffff;
     background: black;
     text-transform: none;
     padding: 5px 10x;
@@ -23,19 +26,43 @@ const LoginButton = styled(Button)`
 
 const CustomButtons = () =>{
 
+    const isLoggedIn = !!localStorage.getItem("accessToken");
+    const navigate = useNavigate()
+
+
     const [open, setOpen] = useState(false);
+    const [openSignUp, setOpenSignUp] = useState(false)
 
     const handleOpen = () => {
         setOpen(true)
     }
 
+    const handleSignOpen  = () => {
+        setOpenSignUp(true)
+    }
+    const handleClear = () => {
+        window.location.reload(true);
+        localStorage.clear("accessToken")
+        navigate("/")
+    }
     return(
         <Wrapper>
-            <LoginButton variant="contained" onClick={handleOpen}>Login</LoginButton>
-            <Link to="/campaigns">
-            <LoginButton variant="contained">SignUp</LoginButton>
-            </Link>
+           { !isLoggedIn ? 
+            (
+            <>
+                <Link to="signup">
+                    <LoginButton variant="contained"onClick={handleSignOpen}>SignUp</LoginButton>
+                </Link>
+                <Link to="login">
+                    <LoginButton variant="contained" onClick={handleOpen}>Login</LoginButton>
+                </Link>
+            </>
+            )
+            :
+             <LoginButton variant="contained" onClick={()=> handleClear()}>Logout</LoginButton>
+            }
             <LoginDialog open={open} setOpen={setOpen}/>
+            <SignUpDialog open={openSignUp} setOpenSignUp={setOpenSignUp}/>
         </Wrapper>    
     )
 }

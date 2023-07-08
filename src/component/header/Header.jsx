@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { AppBar, Box, Toolbar,Typography,styled } from "@mui/material"
 
+import { Link, useNavigate } from "react-router-dom";
+
 import CustomButtons from "./CustomButtons";
-import Search from "./Search";
+import { getLocalStorageData } from "../../utility/Utility";
+
+
+
 
 const StyledHeader = styled(AppBar)` 
     background: black;
@@ -26,12 +32,24 @@ const NavList = styled(Typography)`
 
 
  const Header = () => {
+
+    const navigate = useNavigate();
+
+    // const isLogedIn = !!getLocalStorageData();
+    
+    // useEffect(() => {
+    //     if(!isLogedIn){
+    //         navigate("/")
+    //     }
+    // })
     return(
         <>
             <StyledHeader>       
                 <Toolbar style={{ justifyContent: "space-between"}}>
                     <Component>
-                        <NavList>About Us</NavList>
+                        <Link to="/campaigns" style={{textDecoration:"none"}}>
+                            <NavList>About Us</NavList>
+                        </Link>
                         <NavList>Pricing</NavList>
                         <NavList>Request demo</NavList>
                     </Component>

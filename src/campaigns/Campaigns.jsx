@@ -1,7 +1,10 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+
+import { getLocalStorageData } from '../utility/Utility';
+
 import {List,ListItemButton,ListItemText,ListItemIcon,Collapse, Button,Divider,Typography, Grid,Box,styled} from '@mui/material';
 import {Inbox,Drafts,ExpandLess,ExpandMore,StarBorder,Edit} from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 
 
@@ -29,10 +32,17 @@ const CreateNewButton = styled(Button)`
 
 export default function Campaigns() {
 
+  const navigate = useNavigate();
+
   const [openCampaign, setOpenCampaign] = useState(false);
   const [openInbox, setOpenInbox] = useState(false);
   
-
+  useEffect(() => {
+      const isLogedIn = localStorage.getItem("accessToken");
+      if(!isLogedIn){
+          navigate('/')
+      }
+  },[])
 
   const handleOpenCreate = () => {
     setOpenCampaign(!openCampaign);
@@ -47,14 +57,14 @@ export default function Campaigns() {
     <Grid container >
         <Grid item lg={3} md={4} sm={5} xs={4} style={{borderRight: '1px solid rgba(0, 0, 0, 0.12)',height: "100vh"}}>
           <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: '#fe902d', paddingTop: 15,textAlign:"center" }}
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'rgb(205, 209, 228)', paddingTop: 15,textAlign:"center" }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
             <Link to='createcampaigns'>
-            <CreateNewButton style={{borderRadius: 50, fontSize: "600",marginBottom: 15}} >
-              <Edit/>Create
-            </CreateNewButton>
+                <CreateNewButton style={{borderRadius: 50, fontSize: "600",marginBottom: 15}} >
+                  <Edit/>Create
+                </CreateNewButton>
             </Link>
           }
         >
@@ -144,16 +154,16 @@ export default function Campaigns() {
                   >Campaigns
                 </Typography>
                 <Link to="createcampaigns">              
-                  <CreateNewButton style={{
-                    borderRadius: 50,
-                    color:"#fff", 
-                    background:"#007c89",
-                    display:"inline-block",
-                    margin: "6px 0 0 15px",
-                    padding: "0 30px"
-                    }} >
-                      Create New
-                  </CreateNewButton>
+                    <CreateNewButton style={{
+                        borderRadius: 50,
+                        color:"#fff", 
+                        background:"#007c89",
+                        display:"inline-block",
+                        margin: "6px 0 0 15px",
+                        padding: "0 30px"
+                      }} >
+                        Create New
+                    </CreateNewButton>
                 </Link>
               </Box>
             </RightContainer>
