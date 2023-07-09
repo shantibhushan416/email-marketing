@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { sendCampaignEmail } from '../service/campaign';
-import { Box, InputBase, Typography, TextField, Button, styled } from '@mui/material';
+import { Box, InputBase, Typography, Divider, Button, styled } from '@mui/material';
 import { Close, DeleteOutline } from '@mui/icons-material';
 
 
@@ -10,7 +10,7 @@ const Header = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
   padding: "10px 15px",
-  background: "#f2f6fc",
+ 
   borderRadius: 5,
   '& > p': {
     fontSize: 14,
@@ -30,12 +30,15 @@ const RecipientsWrapper = styled(Box)({
 
 })
 
-const Footer = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-  align-items: center;
-`;
+const Footer = styled(Box)({
+  display: "flex",
+  justifyContent: "space-between",
+  flexDirection: "row-reverse",
+  padding:"15px 15px",
+  width: "80%",
+ 
+  
+});
 
 const SendButton = styled(Button)`
   background: #0B57D0;
@@ -59,12 +62,7 @@ const modules = {
     [{font: []}],
     [{size: []}],
     ["bold", "italic","underline","strike","blockquote"],
-    [
-      {list:"ordered"},
-      {list: "bullet"},
-      {indent:"-1"},
-      {indent:"+1"}
-    ],
+    [{list:"ordered"},{list: "bullet"},{indent:"-1"},{indent:"+1"}],
     ["link","image","video"]
   ]
 }
@@ -89,23 +87,25 @@ export default function CreateCampaigns() {
     console.log(response)
   }
 
- 
+
 
 
   return (
-    <Box style={{ display: "flex", height: "100vh", width: "100%", alignItems: "center", justifyContent: "center" }}>
-      <Box style={{ display: "flex", flexDirection: "column", width: "80%", height: " 70%", border: "1px solid black", marginTop: 77, borderRadius: 5 }}>
-        <Header >
+    <Box style={{ display: "flex",flexDirection: "column", height: "100vh", width: "100%", alignItems: "center", justifyContent: "center" }}>
+      <Box style={{ display: "flex", flexDirection: "column",justifyContent:"space-between", width: "80%", height: " 70%", border: "1px solid grey", marginTop: 77, borderRadius: 5 }}>
+        <Header style={{borderBottom:"1px solid grey"}}>
         <InputBase placeholder='Subject'  onChange={handleChange} />
-          
         </Header>
-        <ReactQuill theme="snow" value={value}  onChange={setValue} modules={modules}/>
-        <Footer style={{marginTop:290}}>
+    
+ 
+          <ReactQuill placeholder='Message' theme="snow" value={value}  onChange={setValue} modules={modules} style={{display:"flex",flexDirection:"column-reverse",justifyContent:"space-around"}}/>
+        
+        
+      </Box>
+      <Footer >
           <SendButton onClick={sendEmail}>Send</SendButton>
           <DeleteOutline />
-        </Footer>
-      </Box>
-
+      </Footer>
     </Box>
   )
 }

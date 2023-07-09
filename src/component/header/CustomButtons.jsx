@@ -1,4 +1,3 @@
-
 import { Box,Button,styled} from "@mui/material";
 
 import LoginDialog from "../login/LoginDialog";
@@ -41,9 +40,9 @@ const CustomButtons = () =>{
         setOpenSignUp(true)
     }
     const handleClear = () => {
-        window.location.reload(true);
         localStorage.clear("accessToken")
-        navigate("/")
+        window.location.reload(true);
+        navigate("/");      
     }
     return(
         <Wrapper>

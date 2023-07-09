@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Header from "./component/header/Header";
 import Home from "./component/home/Home";
@@ -7,6 +8,8 @@ import CreateCampaigns from "./campaigns/CreateCampaigns";
 import LoginDialog from "./component/login/LoginDialog";
 import SignUpDialog from "./component/login/SignupDialog";
 
+
+import 'react-toastify/dist/ReactToastify.css';
 import { Box } from "@mui/material";
 import "./App.css";
 
@@ -25,8 +28,11 @@ function App() {
               <Route path = "/login" element={<LoginDialog/>}/>
               <Route path = "/signup" element={<SignUpDialog/>}/>
             </Routes>
+            <ToastContainer/>
           </Box>
+          
       </BrowserRouter>
+      
     </div>
   );
 }

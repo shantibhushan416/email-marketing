@@ -1,10 +1,15 @@
-import { getLocalStorageData, setLocalStorageData } from "../utility/Utility";
+import { toast } from 'react-toastify';
+
 import HttpService from "./httpService";
 
 const authService = new HttpService({ service: "/auth" });
 
+
+
+
 export const signup = async (data) => {
-    const response = await authService.post("/signup", data);
+    
+    return await authService.post("/signup", data);
 
     if (response?.statusCode === 200) {
         /// redirect to signin
@@ -13,15 +18,7 @@ export const signup = async (data) => {
     }
 };
 
-export const signin = async (data) => {
-    const response = await authService.post("/signin", data);
+export  const signin = async (data) => {
+    return await authService.post("/signin", data);
 
-    if (response?.statusCode === 200) {
-        const { user, accessToken } = response;
-        localStorage.setItem("accessToken", accessToken);
-        ///
-    } else {
-        //toaster
-    }
-    console.log(response);
-};
+}

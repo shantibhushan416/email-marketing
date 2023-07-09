@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import {  signin } from "../../service/auth";
@@ -20,11 +20,18 @@ const Wrapper = styled(Box)`
     height: 80%;
     flex-direction: column;
     justify-content: center;
-    padding: 25px 150px;
+    padding: 25px 100px;
     flex: 1;
     & > div,& > button,& > p {
         margin-top: 20px
     }
+`;
+const Error = styled(Typography)`
+    font-size: 14px;
+    color: #ff6161;
+    line-height: 0;
+    margin-top: 10px;
+    font-weight: 600
 `;
 
 const LoginButton =styled(Button)`
@@ -64,36 +71,42 @@ const LoginDialog = ({open, setOpen}) => {
     const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState(loginInitialValues);
+    const [error,setError] = useState(false);
 
     useEffect(() => {
         const isLogedIn = localStorage.getItem("accessToken")
-        if(!isLogedIn){
+        if(isLogedIn){
             navigate('/')
         }
     },[])
 
     const handleClose = () => {
         setOpen(false);
-        navigate("/");
+        setError(false);
+        navigate("/")
     }
 
    
 
-    const onValueChange = (e) => {
-        setCredentials({...credentials, [e.target.name]: e.target.value})
+    const onValueChange = ({target:{name,value}}) => {
+        setCredentials({...credentials, [name]: value})
         console.log(credentials)
      }
 
-    const loginUser = async () => {
-        let response =  await signin(credentials);
-        handleClose();
-        // console.log(response)
-        // if(response.status === 200){
-        //     handleClose();
-        //     setLocalStorageData(response.data.accessToken);
-        //     navigate("/")
-        // }
-       
+    const loginUser =  async () => {
+        const response =  await signin(credentials);
+
+        if (response?.statusCode === 200) {
+            const { user, accessToken } = response;
+            localStorage.setItem("accessToken", accessToken);
+            handleClose();
+            navigate("/")
+           
+        } else {
+            toast("something went wrong");
+            setError(true);
+        }
+
      }
     
     
@@ -105,6 +118,7 @@ const LoginDialog = ({open, setOpen}) => {
                     <Wrapper>
                         <Typography variant="h4" style={{fontWeight:"bold"}}>LogIn</Typography>
                         <TextField variant="standard" label="Enter Email" name="uname" onChange={(e) => onValueChange(e)}/>
+                        {error && <Error>Please enter valid username or password</Error>}
                         <TextField variant="standard" label="Enter Password" name="password" onChange={(e) => onValueChange(e)}/>
                         <Box style={{display:"flex"}}>                   
                             <Checkbox style={{marginLeft: 0}}/>
@@ -122,4 +136,4 @@ const LoginDialog = ({open, setOpen}) => {
     )
 }
 
-export default LoginDialog
+export default LoginDialog 
