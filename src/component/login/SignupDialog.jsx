@@ -119,8 +119,8 @@ const navigate = useNavigate();
         if (!values.role) {
             errors.role = "Role is required!";
         }
-        if (!values.phone) {
-            errors.phone = "Phone number is required!";
+        if (!values.mobile) {
+            errors.mobile = "Phone number is required!";
         }
         return errors;
       };
@@ -137,7 +137,7 @@ const navigate = useNavigate();
                         variant="outlined" 
                         label="First Name" 
                         name="name"
-                        value={formValues.username}
+                        value={formValues.name}
                         onChange={handleChange}  
                     />
                     <Error>{formErrors.name}</Error>
@@ -148,7 +148,7 @@ const navigate = useNavigate();
                         value={formValues.email}
                         onChange={handleChange} 
                     />
-                     <Error>{formErrors.name}</Error>
+                     <Error>{formErrors.email}</Error>
                     <TextField 
                         variant="outlined" 
                         label="password" 
@@ -172,7 +172,7 @@ const navigate = useNavigate();
                     />
                     <Error>{formErrors.mobile}</Error>
                     
-                    <LoginButton onClick={signUpUser} variant="contained" style={{marginTop: "50px"}}>
+                    <LoginButton onClick={signUpUser} variant="contained" style={{marginTop: "20px"}}>
                         Signup
                     </LoginButton>
                     
