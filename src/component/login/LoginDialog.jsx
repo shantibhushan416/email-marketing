@@ -9,6 +9,7 @@ import { Box, Button, Dialog, TextField, Typography,Checkbox,styled } from "@mui
 
 
 
+const cpm = r;
 
 const Component = styled(Box)`
     height: 90vh;
