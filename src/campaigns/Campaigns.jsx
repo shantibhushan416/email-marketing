@@ -10,7 +10,6 @@ import { Link,useNavigate } from 'react-router-dom';
 
 const RightContainer = styled(Box)`
   position: relative;
-  z-index: 5;
   & > div {
     padding: 0 30px;
     display: flex;
