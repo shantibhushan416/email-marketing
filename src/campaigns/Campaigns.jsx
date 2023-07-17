@@ -7,7 +7,7 @@ import {Inbox,Drafts,ExpandLess,ExpandMore,StarBorder,Edit} from '@mui/icons-mat
 import { Link,useNavigate } from 'react-router-dom';
 
 
-
+const  l = 6;
 const RightContainer = styled(Box)`
   position: relative;
   & > div {
